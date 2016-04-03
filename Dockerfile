@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM phusion/baseimage
 MAINTAINER Antonio Andrade <antonio@antonioandra.de>
 
 # Keep upstart from complaining
