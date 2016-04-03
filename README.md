@@ -1,52 +1,40 @@
-# docker-wordpress-nginx
+# WordPress
 
-A Dockerfile that installs the latest wordpress, nginx, php-apc and php-fpm.
+This Dockerfile installs the latest WordPress version, nginx, php-apc, php-fpm and mysql.
 
-NB: A big thanks to [jbfink](https://github.com/jbfink/docker-wordpress) who did most of the hard work on the wordpress parts!
-
-You can check out his [Apache version here](https://github.com/jbfink/docker-wordpress).
+It is fork of [eugeneware/docker-wordpress-nginx](http://github.com/eugeneware/docker-wordpress-nginx), reducing the number of layers and using a different base image. Many thanks to the original author!
 
 ## Installation
 
-The easiest way to get this docker image installed is to pull the latest version
-from the Docker registry:
+The quickest way to get this docker image installed is to pull the latest version from the Docker registry:
 
 ```bash
-$ docker pull eugeneware/docker-wordpress-nginx
+docker run -p 8080:80 antonioandrade/wordpress
 ```
 
 If you'd like to build the image yourself then:
 
 ```bash
-$ git clone https://github.com/eugeneware/docker-wordpress-nginx.git
-$ cd docker-wordpress-nginx
-$ sudo docker build -t="eugeneware/docker-wordpress-nginx" .
+git clone https://github.com/antonioandrade/docker-wordpress-nginx.git
+cd docker-wordpress-nginx
+docker build -t="antonioandrade/wordpress" .
 ```
 
 ## Usage
 
-To spawn a new instance of wordpress on port 80.  The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
+To start a new container using this image run:
 
 ```bash
-$ sudo docker run -p 80:80 --name docker-wordpress-nginx -d eugeneware/docker-wordpress-nginx
+docker run -p 8080:80 antonioandrade/wordpress
 ```
 
-Start your newly created docker.
+After starting the container, check to see if it started and the port mapping is correct.  This will also report the port mapping between the docker container and the host machine.
 
 ```
-$ sudo docker start docker-wordpress-nginx
-```
-
-After starting the docker-wordpress-nginx check to see if it started and the port mapping is correct.  This will also report the port mapping between the docker container and the host machine.
-
-```
-$ sudo docker ps
-
-0.0.0.0:80 -> 80/tcp docker-wordpress-nginx
+docker ps
+0.0.0.0:8080 -> 80/tcp wordpress
 ```
 
 You can the visit the following URL in a browser on your host machine to get started:
 
-```
-http://127.0.0.1:80
-```
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
